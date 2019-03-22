@@ -1,0 +1,90 @@
+
+
+ {% extends 'newsletter/base.html' %} {
+{% load static %} {% load gravatar %}
+{% block content %}<!-- START PAGE CONTENT WRAPPER -->
+
+{% if user.is_authenticated %}
+
+<section>
+                <div class="container">
+                    <div class="row">      {% for subscription in subscriptions %}
+                        <div class="col-md-4">
+                            <div class="feature"> <img alt="Image" src="{% static 'img/cowork-6.jpg' %}" class="border--round">
+                              <h4>{{ subscription.newsletter.name }} </h4>
+    <a class="btn btn--primary btn--sm type--uppercase" href="/@{{ subscription.newsletter.url_slug }}"> <span class="btn__text">
+        View
+          </span> </a>
+
+
+
+                            </div>
+                        </div>{% endfor %}
+                        
+                    </div>
+                </div>
+            </section>
+{% else %}
+
+
+
+
+<section class="cover cover-features imagebg space--lg section--ken-burns" data-overlay="2">
+                <div class="background-image-holder"> <img alt="background" src="{% static 'img/landing-23.jpg' %}"> </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-7">
+                            <h1><b>Monetize Your Content. </b><br>Easy &amp; Quick.</h1>
+                            <p class="lead">Epistulo lets you publish exclusive content behind a paywall.<br> Make money from your work.</p>
+                            <a class="btn btn--primary type--uppercase" href="{% url 'signup' %}"> <span class="btn__text">
+            Monetize my content now</span> </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Alarm"></i>
+                                <div class="feature__body">
+                                    <p> Sign up in less than 3 minutes. No tech skills needed. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Computer"></i>
+                                <div class="feature__body">
+                                    <p> Publish texts and videos. Tell your audience where to find it.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Money-2"></i>
+                                <div class="feature__body">
+                                    <p> Your audience can access it for a monthly subscription fee.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="slider" data-paging="true">
+                                <ul class="slides">
+                                    <li>
+                                        <div class="testimonial">
+                                            <blockquote> It seems like a really logical business strategy that I think both my readers and myself would benefit from. Can’t wait to join! </blockquote>
+                                            <h5>Emet Baker</h5> <span>Blogger</span> </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+{% endif %}
+
+ {% endblock %}

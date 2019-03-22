@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="main-container">
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h1>Edit your newsletter info<br></h1>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container">
+                    <form method="post">
+                        <input type="hidden" name="user" value="{{ user }}" />{% csrf_token %}
+    <div class="row">
+      <div class="col-6">
+      {{ form.name|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.tagline|as_crispy_field }}
+
+
+      </div>
+    </div>
+    {{ form.description|as_crispy_field }}
+
+    {{ form.price|as_crispy_field }}
+  <button class="btn btn--sm btn--primary type--uppercase" type="submit">Save changes</button>
+  <hr>
+  <a href="delete-profile" onclick="if (!confirm('Are you sure? This action can\'t be undone. Your newsletter account will be removed.')) { return false }">Delete newsletter account</a>
+</form>
+                </div>
+            </section>
+
+    {% endblock %}

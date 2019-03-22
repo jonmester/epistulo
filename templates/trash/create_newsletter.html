@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {
+{% load static %}
+{% block content %}
+
+ <section class="switchable switchable--switch">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-5 col-lg-5">
+                            <div class="switchable__text">
+                                <h2>Create an Epistulo newsletter</h2> <span>Already have an account? <a href="#">Sign In</a></span>
+                                <hr class="short">
+                                <form method='POST'> {% csrf_token %}
+
+
+                                                                        <div class="row">
+                                        <div class="col-12">{{ form.as_p }}
+                                           <input type="submit" value="Save"/></div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5"> <img alt="Image" class="border--round box-shadow-shallow" src="{% static 'img/landing-7.jpg'%}"> </div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10">
+                            <div class="slider" data-paging="true">
+                                <ul class="slides">
+                                    <li>
+                                        <div class="testimonial">
+                                            <blockquote> “We’ve been using Stack to prototype designs quickly and efficiently. Needless to say we’re hugely impressed by the style and value.” </blockquote>
+                                            <h5>Maguerite Holland</h5> <span>Interface Designer — Yoke</span> </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}

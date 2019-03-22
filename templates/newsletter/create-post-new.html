@@ -1,0 +1,112 @@
+{% extends 'newsletter/base.html' %}
+
+
+
+{% load gravatar %}
+
+
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+      
+
+
+<section class="bg--secondary space--sm">
+                <div class="container">
+                    <div class="row">
+                     
+                        <div class="col-lg-10">
+                            <div class="boxed boxed--lg boxed--border">
+                                <div id="account-profile" class="account-tab">
+                                    <h1>Publish New Post</h1>
+
+                                            <div id="video-area">
+<div class="modal-instance">
+<a class="btn btn--primary btn--icon modal-trigger" href="#"  data-toggle="modal" data-target="#myModal">
+                                <span class="btn__text">
+                                    <i class="icon-Youtube icon--lg"></i> Embed YouTube Video</span>
+                            </a><div class="modal-container" id="myModal">
+    <div class="modal-content">
+      <section class="unpad ">
+                                            <div class="container">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-6 col-12 ">
+                                                        <div class="feature feature-1 text-center">
+                                                          
+                                                            <div class="feature__body boxed boxed--lg boxed--border">
+                                                                <div class="modal-close modal-close-cross"></div>
+                                                                <div class="text-block">
+                                                                    <h3>Enter YouTube URL</h3>
+                                                                    
+                                                                </div>
+                                                       <form>
+    <input type="text" id="youtubeId" class="js-youtube-vid form-control m-b-10" onChange="process1(this)"></form>
+    <div id="info"></div>
+    <div id="videoframe"><iframe id="myIframe" height="500px" style="display: none;"></iframe></div>
+    <a class="btn btn--primary modal-trigger" id="finished-video-embed" href="#"  data-toggle="modal" data-target="#myModal">
+                                <span class="btn__text">
+                                    Done</span>
+                            </a>
+
+                                                            </div>
+                                                        </div>
+                                                        <!--end feature-->
+                                                    </div>
+                                                </div>
+                                                <!--end of row-->
+                                            </div>
+                                            <!--end of container-->
+                                        </section>
+     
+    </div>
+  </div>
+</div>
+                     </div>
+                                    <form method="post" id="form-work" class="form-horizontal" role="form" autocomplete="off" enctype="multipart/form-data">
+                      <div class="form-group row">
+                        {% csrf_token %}
+                        
+                        <div class="col-md-12">  {{ form.title|as_crispy_field }}
+
+                        </div>
+                          <div class="col-md-12">
+                         {{ form.content|as_crispy_field }}
+                        </div>
+                         <div class="col-md-12">
+                         {{ form.featured_image|as_crispy_field }}
+                        </div>
+     <div class="col-md-12">
+                         {{ form.publicity|as_crispy_field }}
+                         
+                      <button class="btn btn--primary" type="submit">Publish Now!</button>  </div>
+                      </div>
+                      <input type="hidden" id="youtube-video-embed" name="youtube-video-embed" value="" />
+       
+                  
+                    </form>
+                                </div>
+
+                              
+                              
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+
+
+
+
+
+<script type="text/javascript" src="{% static "assets/js/youtube.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}
+
+
+

@@ -1,0 +1,65 @@
+{% extends 'bas.html' %}
+
+
+
+{% load gravatar %}
+
+
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+
+          <div class=" container    container-fixed-lg">
+            <!-- START card -->
+            <div class="card card-transparent">
+              <div class="card-header ">
+                <div class="card-title">Change Settings
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h1>Connect With Stripe</h1>
+             
+                        <form method="post" id="form-work" class="form-horizontal" role="form" autocomplete="off" enctype="multipart/form-data>
+                      <div class="form-group row">
+                        {% csrf_token %}
+                        
+                        <div class="col-md-6">  {{ form.name|as_crispy_field }}
+                        </div>
+                          <div class="col-md-12">
+                          {{ form.description|as_crispy_field }}   </div>
+                          <div class="col-md-6">  {{ form.cover_pic|as_crispy_field }}
+                        
+                         
+                      <button class="btn btn-success" type="submit">Submit</button>  </div>
+                      </div>
+                      
+       
+                  
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END card -->
+          </div>
+           {% if messages %}
+      {% for message in messages %}
+
+<div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert-success" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                 <span> {{ message|safe }}</span>
+                            </div>
+
+        
+     
+        {% endfor %}
+   
+      {% endif %}
+
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}

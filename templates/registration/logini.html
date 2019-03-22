@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {
+{% load static %}
+{% block content %}
+
+            <section class="imagebg text-center height-100" data-overlay="7">
+                <div class="background-image-holder"><img alt="background" src="{% static 'img/inner-6.jpg'%}"></div>
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-7 col-lg-5">
+                            <h2>Login to continue</h2>
+                            <p class="lead"> Welcome back, sign in with your existing Stack account credentials </p>
+
+                                <div class="row">
+                                    <div class="col-md-12"> <form method='POST'> {% csrf_token %}
+
+
+                                        {{ form.as_p }}</div>
+                                    <div class="col-md-12"> <br><button class="btn btn--primary type--uppercase" type="submit">Login</button> </div>
+                                </div>
+                             <span class="type--fine-print block">Dont have an account yet? <a href="{% url 'signup' %}">Create account</a></span> <span class="type--fine-print block">Forgot your username or password? <a href="page-accounts-recover.html">Recover account</a></span> </div>
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'bas.html' %}
+
+
+
+{% load gravatar %}
+
+
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+
+          <div class=" container    container-fixed-lg">
+            <!-- START card -->
+            <div class="card card-transparent">
+              <div class="card-header ">
+                <div class="card-title">It's time to monetize your content
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h1>Start Your Creator Profile</h1>
+                    <p>Make money by creating content and letting your followers pay to access it
+                    </p>
+                    <br>
+                    <p class="small hint-text">Due to limitations with Stripe, you'll be unable to change the monthly subscription price after creating your profile. We work on going around the issue, but can't guarantee anything.</p>
+
+                        <form method="post" id="form-work" class="form-horizontal" role="form" autocomplete="off" enctype="multipart/form-data>
+                      <div class="form-group row">
+                        {% csrf_token %}
+                        
+                        <div class="col-md-6">  {{ form.name|as_crispy_field }}
+                        </div>
+                          <div class="col-md-12">
+                          {{ form.description|as_crispy_field }}   
+                          {{ form.price|as_crispy_field }}
+                           <p class="small hint-text">Monthly subscription price in USD. <a href="#">Read here for tips on pricing strategies!</a></p> 
+                      <button class="btn btn-success" type="submit">Submit</button>  </div>
+                      </div>
+                      
+       
+                  
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END card -->
+          </div>
+           {% if messages %}
+      {% for message in messages %}
+
+<div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert-success" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                 <span> {{ message|safe }}</span>
+                            </div>
+
+        
+     
+        {% endfor %}
+   
+      {% endif %}
+
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}

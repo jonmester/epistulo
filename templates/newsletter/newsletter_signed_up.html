@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {
+{% load static %}
+{% block content %}
+<div class="main-container">
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h1>You subscribed to {{ newsletter.name }}</h1>
+                            <p>Message from the author:</p>
+                            <p class="lead"> {{ newsletter.thank_you }}</p>
+                            <a class="btn btn--secondary type--uppercase" href="/newsletter/{{ newsletter.id }}"> <span class="btn__text">Go back to newsletter page</span> </a>
+
+                        </div>
+                    </div>
+                </div></section></div>
+
+
+    {% endblock %}

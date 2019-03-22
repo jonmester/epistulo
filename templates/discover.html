@@ -1,0 +1,62 @@
+
+
+{% extends 'newsletter/base.html' %} {
+{% load static %}
+{% block content %}
+<section class="text-center ">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-10 col-lg-8">
+                                            <h1>Discover</h1>
+                                            
+                                        </div>
+                                    </div>
+                                    <!--end of row-->
+                                </div>
+                                <!--end of container-->
+                            </section>
+                           
+<div class="container">
+                    <div class="masonry">
+
+                        <!--end masonry filters-->
+                        <div class="masonry__container row masonry--active" style="position: relative;">
+
+
+                            <div class="masonry__item col-md-4" style="position: absolute; left: 0px; top: 0px;"></div>
+
+                            <!--end item-->
+
+                            {% for profile in newsletter %}
+                            <div class="masonry__item col-md-4">
+                                <div class="product">
+                                    <a href="@{{ profile.url_slug }}">
+                                        <img alt="Image" src="{% static 'img/music-2.jpg' %}">
+                                    </a>
+                                    <a class="block" href="@{{ profile.url_slug }}">
+                                        <div>
+                                            <h5>{{ profile.name }}</h5>
+                                            <span>{{ profile.subscribers.count }}
+ members</span>
+                                        </div>
+                                        <div>
+                                     
+                                            <span class="h5 inline-block">${{ profile.price }}/month</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        <!--end masonry container-->
+                    </div>
+                    <!--end masonry-->
+                </div>
+</section>
+
+
+
+
+
+{% endblock %}

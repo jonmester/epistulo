@@ -1,0 +1,38 @@
+
+    {% extends 'basis.html' %} 
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="jumbotron center">
+  <h1 class="display-4">Create a newsletter</h1>
+
+</div>
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+ <form method="post">
+                        <input type="hidden" name="user" value="{{ user }}" />{% csrf_token %}
+    <div class="row">
+      <div class="col-6">
+      {{ form.name|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.tagline|as_crispy_field }}
+
+
+      </div>
+    </div>
+    {{ form.description|as_crispy_field }}     {{ form.price|as_crispy_field }}
+    {{ form.paypal|as_crispy_field }}
+
+
+  <button class="btn btn--sm btn--primary type--uppercase" type="submit">Create Now!</button>
+</form>
+</div>
+<div class="col-md-4">
+</div>
+
+
+
+    {% endblock %}

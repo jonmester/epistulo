@@ -1,0 +1,62 @@
+
+      {% extends 'newsletter/base.html' %}
+
+
+
+{% load gravatar %}
+
+
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+      
+
+<section class="bg--secondary space--sm">
+                <div class="container">
+                    <div class="row">
+                     
+                        <div class="col-lg-10">
+                            <div class="boxed boxed--lg boxed--border">
+                                <div id="account-profile" class="account-tab">
+                                    <h1>Edit Post</h1>
+
+                                           
+                                    <form method="post" id="form-work" class="form-horizontal" role="form" autocomplete="off" enctype="multipart/form-data">
+                      <div class="form-group row">
+                        {% csrf_token %}
+                        
+                        <div class="col-md-12">  {{ form.title|as_crispy_field }}
+
+                        </div>
+                          <div class="col-md-12">
+                         {{ form.content|as_crispy_field }}
+                        </div>
+     <div class="col-md-12">
+                         {{ form.publicity|as_crispy_field }}
+                         
+                      <button class="btn btn--primary" type="submit">Save Changes</button>  </div>
+                      </div>
+                     
+       
+                  
+                    </form>
+                                </div>
+
+                              
+                              
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}
+
+
+

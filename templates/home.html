@@ -1,0 +1,225 @@
+
+
+
+
+
+
+
+
+
+
+
+ {% extends 'base.html' %} {
+{% load static %} {% load gravatar %}
+{% block content %}
+  {% if user_profile.has_newsletter == False or user_profile == None %}
+             <section class="cover cover-features imagebg space--lg section--ken-burns" data-overlay="6">
+                <div class="background-image-holder modal-instance"> <img alt="background" src="{% static '/img/1.jpeg' %}"> </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-7 ">
+                       
+                            <h1>Make Money With Your Own Paid Email Newsletter</h1>
+                            <p class="lead">Build a list of paying subscribers who love your content. Get recurring income every month. Get started for free.<br></p>
+                            <a class="btn btn--primary type--uppercase" href="{% url 'signup' %}"> <span class="btn__text">CREATE YOUR ACCOUNT NOW </span> </a>
+                            <a class="btn btn--sm type--uppercase modal-trigger" href="#" data-modal-index="5">
+                                    <span class="btn__text">
+                                        Login
+                                    </span>
+                                </a>
+
+
+                                                                <div class="modal-container">
+                                    <div class="modal-content section-modal">
+                                        <section class="unpad ">
+                                            <div class="container">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-6">
+                                                        <div class="boxed boxed--lg bg--white text-center feature">
+                                                            <div class="modal-close modal-close-cross"></div>
+                                                            <h3>Login to Your Account</h3>
+                                                            <a class="btn block btn--icon bg--facebook type--uppercase" href="{% url 'social:begin' 'facebook' %}">
+                                                                <span class="btn__text">
+                                                                    <i class="socicon-facebook"></i>
+                                                                    Login with Facebook
+                                                                </span>
+                                                            </a>
+                                                            <a class="btn block btn--icon bg--twitter type--uppercase" href="{% url 'social:begin' 'twitter' %}">
+                                                                <span class="btn__text">
+                                                                    <i class="socicon-twitter"></i>
+                                                                    Login with Twitter
+                                                                </span>
+                                                            </a>
+                                                            <hr data-title="OR">
+                                                            <div class="feature__body">
+                                                                <form action="{% url 'login' %}" method="POST">
+                                                                    {% csrf_token %}
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                        
+                                                                            <input id="username_field" name="username" type="text" placeholder="Username" />
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <input id="password_field" name="password" type="password" placeholder="Password" />
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <button class="btn btn--primary type--uppercase" type="submit">Login</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end of row-->
+                                                                </form>
+                                                                <span class="type--fine-print block">Dont have an account yet?
+                                                                    <a href="{% url 'signup' %}">Create account</a>
+                                                                </span>
+                                                                <span class="type--fine-print block">Forgot your username or password?
+                                                                    <a href="#">Recover account</a>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end of row-->
+                                            </div>
+                                            <!--end of container-->
+                                        </section>
+                                    </div>
+                                </div>
+                           
+                            
+
+                          
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Pen-5"></i>
+                                <div class="feature__body">
+                                    <p>Write content about whatever you want. News, tech, politics or anything at all!<br></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Aim"></i>
+                                <div class="feature__body">
+                                    <p>Attract readers who pay for reading your premium posts behind a paywall. <br></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature feature-2 boxed boxed--border bg--white"> <i class="icon color--primary icon-Love"></i>
+                                <div class="feature__body">
+                                    <p>Get reccuring income every month from writing about what you love!<br></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> {% else %}
+ <section class="cover cover-features imagebg space--lg section--ken-burns" data-overlay="6">
+                <div class="background-image-holder"> <img alt="background" src="{% static '/img/1.jpeg' %}"> </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-7">
+                       
+                            
+                           
+                            <h1>Get Going Now</h1>
+                            <p class="lead">The world deserves to benefit from your writing. Start writing!<br></p>
+                            <a class="btn btn--primary type--uppercase" href="{% url 'newsletter_admin' %}"> <span class="btn__text">GO TO DASHBOARD</span> </a>
+
+                          
+                        </div>
+                    </div>
+              
+                </div>
+            </section>
+
+             {% endif %}
+
+            <section class="text-center bg--primary">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h2>Make money from your content &amp; audience<br></h2>
+                            <p class="lead">Making money as an independent journalist, Youtuber, influencer or any other media personality can be tough. You're forced to rely on donations, affiliate partnerships and T-shirt sales.<br><br>But you can change that. You can take matter into your own hands and make a living from doing what you love. And you can control <i>all of it.</i><br></p>
+                       <a class="btn btn--primary type--uppercase" href="#"> <span class="btn__text">Make Money From Your Own Paid Newsletter</span> </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="switchable">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-md-6 text-center"> <img alt="Image" class="border--round box-shadow-wide" src="{% static 'img/3.jpeg'%}">  </div>
+                        <div class="col-md-6 col-lg-5">
+                            <ol class="process-3">
+                                <li class="process_item">
+                                    <div class="process__number"><span>1</span></div>
+                                    <div class="process__body">
+                                        <h4>Just sign up</h4>
+                                        <p> Epistulo makes it simple for you to start an email newsletter that makes money from subscriptions. You don’t need tech skills to get started. </p>
+                                    </div>
+                                </li>
+                                <li class="process_item">
+                                    <div class="process__number"><span>2</span></div>
+                                    <div class="process__body">
+                                        <h4>Connect your bank account</h4>
+                                        <p>We use Stripe to make payments easy and secure for publishers and subscribers. </p>
+                                    </div>
+                                </li>
+                                <li class="process_item">
+                                    <div class="process__number"><span>3</span></div>
+                                    <div class="process__body">
+                                        <h4>Start writing<br></h4>
+                                        <p>Publish to email and the web simultaneously with our simple content management system.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="text-center space--xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h2>Discover newsletters<br></h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="space--xs">
+                <div class="container">
+                    <div class="masonry">
+                        <div class="masonry__container row masonry--active">
+
+                            {% for letter in newsletter %}
+                            <div class="col-md-4 masonry__item">
+                                <div class="card card-2 text-center">
+                                    <div class="card__top">
+                                        <a href="@{{ letter.url_slug }}"> <img alt="Image" src="{% static 'img/landing-21.jpg' %}"></a>
+                                    </div>
+                                    <div class="card__body">
+                                        <h4>{{ letter.name }}<br></h4> <span class="type--fade"> {% if letter.price > 0 %} ${{ letter.price }} / month  {% else %} FREE {% endif %} </span>
+                                        <p>{{ letter.description|truncatechars:100 }}</p>
+                                    </div>
+                                    <div class="card__bottom text-center">
+                                        <div class="card__action"> <span class="h6 type--uppercase">{{ letter.subscribers.count }}</span>
+                                  <i class="material-icons">people</i>
+                                        </div>
+                                        <div class="card__action"> <span class="h6 type--uppercase">Read more</span>
+                                            <a href="@{{ letter.url_slug }}"> <i class="material-icons">launch</i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+            </section>
+
+ {% endblock %}

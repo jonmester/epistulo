@@ -1,0 +1,67 @@
+
+{% extends 'newsletter/base.html' %}
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+
+<section class="bg--white space--sm">
+                <div class="container">
+                    <div class="row">
+                     
+                        <div class="col-lg-6">
+               
+                                    <h1>Create An Account</h1><a class="btn block btn--icon bg--twitter type--uppercase" href="{% url 'social:begin' 'twitter' %}">
+                                <span class="btn__text">
+                                    <i class="socicon-twitter"></i>
+                                    Sign up with Twitter
+                                </span>
+                            </a>
+                           <hr data-title="OR">
+
+                                    <form method="POST" role="form" autocomplete="off" enctype="multipart/form-data">
+                      
+                        {% csrf_token %}
+                  
+            <div class="col-md-12">
+                         {{ form.username|as_crispy_field }}
+                
+              </div>
+          
+           
+        
+          
+            <div class="col-md-12">
+              
+     
+                {{ form.password1|as_crispy_field }}
+              
+            </div>
+     
+          
+            <div class="col-md-12">
+              
+     
+                {{ form.password2|as_crispy_field }}
+              
+            </div>
+      
+            <div class="col-md-12">
+             
+        
+                {{ form.email|as_crispy_field }}</div>
+       
+                  <button type="submit" class="btn btn--primary">Create account now</button>
+                    </form>
+                                </div>
+
+                              
+                              
+                                
+                            </div>
+                        </div>
+                   
+                    <!--end of row-->
+                
+                <!--end of container-->
+            </section>
+
+{% endblock %}

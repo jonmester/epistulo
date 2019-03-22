@@ -1,0 +1,183 @@
+
+
+{% extends 'newsletter/base.html' %} {
+{% load static %}
+{% block content %}
+<div class="container">
+                    <div class="masonry">
+                        <div class="masonry-filter-container text-center row justify-content-center align-items-center">
+                            <span>Category:</span>
+                            <div class="masonry-filter-holder">
+                                <div class="masonry__filters" data-filter-all-text="All Categories"><ul><li class="active" data-masonry-filter="*">All Categories</li><li data-masonry-filter="audio">Audio</li><li data-masonry-filter="computing">Computing</li></ul></div>
+                            </div>
+                        </div>
+                        <!--end masonry filters-->
+                        <div class="masonry__container row masonry--active" style="position: relative; height: 751.938px;">
+                            <div class="masonry__item col-md-4" style="position: absolute; left: 0px; top: 0px;"></div>
+                            <div class="masonry__item col-md-4 filter-audio" data-masonry-filter="Audio" style="position: absolute; left: 0px; top: 0px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-10.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>DALI Xensor 2</h5>
+                                            <span> Desktop Speaker</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block">$269</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-md-4 filter-audio" data-masonry-filter="Audio" style="position: absolute; left: 380px; top: 0px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-5.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>Tivoli M1</h5>
+                                            <span> Digital Radio</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block type--strikethrough">$479</span>
+                                            <span class="h4 inline-block">$399</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-md-4 filter-computing" data-masonry-filter="Computing" style="position: absolute; left: 760px; top: 0px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-4.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>Microsoft Surface</h5>
+                                            <span> 256GB Core i7</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block">$1399</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-md-4 filter-computing" data-masonry-filter="Computing" style="position: absolute; left: 0px; top: 375px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-3.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>Samsung Ativ</h5>
+                                            <span> 256GB Core i5</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block">$1099</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-md-4 filter-computing" data-masonry-filter="Computing" style="position: absolute; left: 380px; top: 375px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-11.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>Apple Macbook</h5>
+                                            <span> 128GB Core i5</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block">$1399</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                            <div class="masonry__item col-md-4 filter-audio" data-masonry-filter="Audio" style="position: absolute; left: 760px; top: 375px;">
+                                <div class="product">
+                                    <a href="#">
+                                        <img alt="Image" src="img/product-small-9.png">
+                                    </a>
+                                    <a class="block" href="#">
+                                        <div>
+                                            <h5>Audison TMA-4</h5>
+                                            <span> Bluetooth Headphones</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block">$279</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--end item-->
+                        </div>
+                        <!--end masonry container-->
+                    </div>
+                    <!--end masonry-->
+                </div>
+<div class="jumbotron bg-white m-b-50 p-b-30" data-pages="parallax">
+<div class=" container    container-fixed-lg sm-p-l-0 sm-p-r-0">
+<div class="inner text-center">
+<h2 class="">Discover Awesome Content Creators</h2>
+</div>
+</div>
+</div>
+<div class="social-wrapper">
+<div class="social " data-pages="social">
+
+
+
+<div class=" container    container-fixed-lg sm-p-l-0 sm-p-r-0">
+<div class="feed">
+
+<div class="day" data-social="day" style="position: relative; width: 620px; height: 2024.22px;">
+
+
+
+
+
+
+
+
+{% for profile in newsletter %}
+
+<div class="card social-card share  col1" data-social="item" style="position: absolute; left: 0px; top: 614px;">
+<div class="circle" data-toggle="tooltip" title="" data-container="body" data-original-title="Label">
+</div><a href="@{{ profile.url_slug }}">
+<div class="card-header clearfix">
+
+<h3> {{ profile.name }}</h3 >
+<h6><span class="location semi-bold"><i class="fa fa-user"></i> {{ profile.subscribers.count }}
+ subscribers</span>
+</h6>
+</div></a>
+
+<div class="card-content">
+
+    <img alt="Quote" src="https://imgs.aftonbladet-cdn.se/v2/images/e0c8842b-bae8-4e88-97b9-edc9ce0d4fc1?fit=crop&h=600&w=900&s=792df13266c9adaf988e70e28da8ad97407250df"></div>
+
+
+</div>
+     {% endfor %}
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+
+.pad {
+	padding: 0px 30px;
+}
+
+.center {
+	text-align: center;
+}
+
+.white {
+	color: white;
+}
+
+.big-number {
+	font-size: 35px;
+	margin: 0px 0px;
+}
+
+.stripe-button-el button {
+	height: 100px !important;
+	background: black;
+}

@@ -1,0 +1,160 @@
+{% extends 'newsletter/base-admin.html' %}
+
+
+
+
+
+
+{% load static %}
+{% block content %}
+
+
+
+
+
+
+<div class="row clearfix">{% for post in posts %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {{ post.title }} <small></small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="avascript:void(0);" class=" waves-effect waves-block">Manage post</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            {{ post.content|truncatechars:255|safe }}
+                        </div>
+                    </div>
+                </div>
+{% endfor %}
+            </div>
+
+
+
+
+
+            <section class="imagebg text-center height-40" data-overlay="4" data-gradient-bg="#4876BD,#5448BD,#8F48BD,#BD48B1">
+       
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-7">
+                            <h1>Dashboard</h1>
+                              <p class="lead">{{ newsletter.name }}</p>
+                            
+                            <a class="btn btn--primary btn--icon" href="{% url 'write-post' %}">
+  <span class="btn__text"><i class="material-icons icon--lg">create</i>Write a new post</span>
+</a>
+<a class="btn" href="admin/edit-profile-{{ newsletter.id }}">
+  <span class="btn__text">Edit profile settings</span>
+</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+<section class="space-xxs">
+  <div class="row">
+    <div class="col-md-2">
+<div class="boxed boxed--border bg--primary-2">
+  <h4>Subscribers</h4>
+
+    <h2 class="card-title big-number">{{ subscribers.count }}</h2>
+    
+  </div>
+  <div class="boxed boxed--border bg--dark">
+  <h4>Published posts</h4>
+    <h2 class="card-title big-number">{{ newsletter.posts.count }}</h3>
+    
+  </div>
+ 
+
+</div>
+
+<div class="col-md-6">
+
+<table class="table table-hover"><h3>Recent subscribers</h3>
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
+      <th scope="col">Started Subscription</th>
+      <th scope="col" title="The more a subscriber reads and interacts with your newsletter over time, the higher score they get.">Loyalty Score</th>
+    </tr>
+  </thead>
+  <tbody
+
+  {% for subscriber in subscribers %}
+    <tr>
+      <th scope="row">{{ subscriber.user.username }}</th>
+      <td>{{ subscriber.user.email }}</td>
+      <td>{{ subscriber.timestamp }}</td>
+      <td>1</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table> <div class="tweets-feed tweets-feed-1 bg--secondary" data-feed-name="elonmusk" data-amount="3"></div>
+  </div>
+  <div class="col-md-4">
+
+    {% for post in posts %}
+
+<div class="boxed boxed--border bg--primary">
+    <h3>{{ post.title }}</h3>
+    <p class="card-text">{{ post.content|truncatechars:255|safe }}</p>
+<a class="btn btn--primary" href="admin/edit-{{ post.id }}">Manage post</a>
+  </div>
+
+
+
+{% endfor %}
+<div class="bar bg--dark boxed boxed--sm">
+  <div class="container">
+    <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bar__module">
+                                            <ul class="menu-horizontal">
+
+                           {% if posts.has_other_pages %}
+   
+    {% if posts.has_previous %}
+      <li class="page-item disabled"><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item active"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active-page pagination-inline"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="pagination-inline"><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li class="pagination-inline"><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled pagination-inline"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+     </div>
+                                    </div></div></div></div>
+</div>
+  </div>
+  </div><!--end of row-->
+
+
+</section>
+
+    {% endblock %}

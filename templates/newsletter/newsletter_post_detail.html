@@ -1,0 +1,213 @@
+
+{% extends 'newsletter/base-stripped.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-lg-8">
+                            <article>
+                                <div class="article__title text-center">
+                                    <a href="#">
+                                        <h1>   {{ newsletter_post.title }}</h1>
+
+                                    </a> 
+                                        {% if request.user == newsletter.user %}
+                                       <div class="col-md-6">
+                                             <a class="btn type--uppercase" href="{% url 'edit-post' post_id=newsletter_post.id %}"> <span class="btn__text">
+         Edit
+          </span> </a></div>
+                                          {% endif %}
+                                    <span>{{ newsletter_post.timestamp|date:"M d" }} at </span>
+                                    <span>
+                                        <a href="/@{{ newsletter.url_slug }}"> {{ newsletter.name }}</a>
+                                    </span>
+                                </div>
+                                <!--end article title-->
+                                <div class="article__body">
+                                  {% if newsletter_post.publicity == 'free' %}
+
+                           {% if video %}
+                          <div class="video-cover border--round">
+  <div class="background-image-holder">
+    <img alt="image" src="http://img.youtube.com/vi/{{ newsletter_post.video }}/0.jpg" />
+  </div>
+  <div class="video-play-icon video-play-icon--sm"></div>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ newsletter_post.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><!--end video cover-->
+
+                      {% endif %}
+                                  {{ newsletter_post.content|safe }}
+
+                                        {% elif newsletter_post.publicity == 'sneak' %}
+                                        {% if is_subscribed %}
+                                        
+                            {% if video %}
+                               <div class="video-cover border--round">
+  <div class="background-image-holder">
+    <img alt="image" src="http://img.youtube.com/vi/{{ newsletter_post.video }}/0.jpg" />
+  </div>
+  <div class="video-play-icon video-play-icon--sm"></div>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ newsletter_post.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><!--end video cover-->
+
+                      {% endif %}
+                                      {{ newsletter_post.content|safe }}
+
+                                        {% else%}
+                                        <!-- <p> {{ newsletter_post.content|safe|truncatechars:100 }}</p> -->
+
+
+
+                                     {{ newsletter_post.content|safe|truncatewords:100 }}
+                                     
+<section class="text-center space--sm" style="margin: -50px 0; ">
+                <div class="container">
+                    <div class="row justify-content-center">
+             
+                            <div class="boxed boxed--lg bg--dark subscribe-form-1">
+                               <h3 > Hey... you seem to <span class="semi-bold">love this?</h3>
+                          
+                                You like what you're seeing. We get that.
+You’ve reached a post that's only available to insider members of {{ newsletter.name }}. Become a member now for ${{ newsletter.price }}/month to see the full post and get unlimited access to all of the insider content.
+<br><br>
+                           <div class="modal-instance">
+  <a class="btn btn--primary modal-trigger" href="#">
+    <span class="btn__text">
+    Become An Insider Member
+    </span>
+  </a>
+  <div class="modal-container">
+    <div class="modal-content">
+                                        <div class="boxed boxed--lg">
+                                            <span><h2>Start Subscription</h2>${{ newsletter.price }} USD / Month
+                                      
+                                                            <form action="{{ newsletter_post.url_slug }}/subscribe" role="form" method="POST" id="payment-form">
+                       {% csrf_token %}
+                      
+                        <div class="row">
+                          <div class="col-md-12">
+                           
+                         
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+                          </div><div id="card-errors" role="alert"></div>
+  </div>
+                      
+                        <div class="row"><div class="col-md-12">
+                      <button type="submit" class="btn btn--primary">Submit Payment</button>  </div>
+                      </div>
+                      </form></div>
+                                        </div>
+                                    <div class="modal-close modal-close-cross"></div></div>
+    
+                
+
+                                    </div>
+                                </div>
+                                <!--end of row-->
+                          
+                        </div>
+                    
+                <!--end of container-->
+            </section>                                     <div class="disable-select" style="filter: blur(4px);
+  -webkit-filter: blur(4px);">
+{% if video %}
+                               <div class="video-cover border--round">
+  <div class="background-image-holder">
+    <img alt="image" src="http://img.youtube.com/vi/{{ newsletter_post.video }}/0.jpg" />
+  </div>
+  <div class="video-play-icon video-play-icon--sm"></div>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ newsletter_post.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><!--end video cover-->
+
+                      {% endif %}
+ {{ newsletter_post.content|safe }}</div></div></div>
+                                      
+
+                                       {% endif %}
+ {% elif newsletter_post.publicity == 'exclusive' %}
+{% if is_subscribed == True %}
+                                        {{ newsletter_post.content|safe }}
+{% else %}
+<div class="full-width b-rad-lg bg-master-darker m-b-30 m-t-20 p-t-20 p-b-20 p-l-20 p-r-20">
+                                        <span class="help-text text-white">Get full access to {{ newsletter.name }}<h3 class="text-white"><i class="fa fa-lock"></i> Become an <span class="semi-bold">insider member!</span></h3></span>
+                                                                   <div class="modal-instance">
+  <a class="btn btn--primary modal-trigger" href="#">
+    <span class="btn__text">
+    Become An Insider Member
+    </span>
+  </a>
+  <div class="modal-container">
+    <div class="modal-content">
+                                        <div class="boxed boxed--lg">
+                                            <span><h2>Start Subscription</h2>${{ newsletter.price }} USD / Month
+                                      
+                                                            <form role="form" method="POST" id="payment-form">
+                       {% csrf_token %}
+                      
+                        <div class="row">
+                          <div class="col-md-12">
+                           
+                         
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+                          </div><div id="card-errors" role="alert"></div>
+  </div>
+                      
+                        <div class="row"><div class="col-md-12">
+                      <button type="submit" class="btn btn--primary">Submit Payment</button>  </div>
+                      </div>
+                      </form></div>
+                                        </div>
+                                    <div class="modal-close modal-close-cross"></div></div>
+    
+                
+                 
+                                      </div>
+                                      <div class="disable-select" style="filter: blur(4px);
+  -webkit-filter: blur(4px);">
+{% if video %}
+                             <div class="video-cover border--round">
+  <div class="background-image-holder">
+    <img alt="image" src="http://img.youtube.com/vi/{{ newsletter_post.video }}/0.jpg" />
+  </div>
+  <div class="video-play-icon video-play-icon--sm"></div>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ newsletter_post.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><!--end video cover-->
+
+                      </div></p></div>
+{% endif %}
+                                        {% endif %}</p>
+                          <br>{% endif %}
+
+                                </div>
+                                <div class="article__share text-center">
+                                    <a class="btn bg--facebook btn--icon" href="#">
+                                        <span class="btn__text">
+                                            <i class="socicon socicon-facebook"></i>
+                                            Share on Facebook
+                                        </span>
+                                    </a>
+                                    <a class="btn bg--twitter btn--icon" href="#">
+                                        <span class="btn__text">
+                                            <i class="socicon socicon-twitter"></i>
+                                            Share on Twitter
+                                        </span>
+                                    </a>
+                                </div>
+                            </article>
+                            <!--end item-->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+                        
+
+{% endblock %}

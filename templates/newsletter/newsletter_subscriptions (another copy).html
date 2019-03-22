@@ -1,0 +1,17 @@
+{% extends 'base-stripped.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}<form action="." method="POST">
+      {% csrf_token %}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_srYced3VVuubsvITR4S7u2f7"
+    data-image="/images/marketplace.png"
+    data-name="{{ newsletter.name }}"
+    data-description="Price per month, cancel anytime"
+    data-amount="{{ price }}"
+    data-label="Subscribe now!">
+  </script>
+</form>
+
+{% endblock %}

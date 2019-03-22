@@ -1,0 +1,100 @@
+
+{% extends 'newsletter/base.html' %}
+
+
+
+{% load gravatar %}
+
+
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+
+
+<div class="main-container">
+            <section class="bg--secondary space--sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="boxed boxed--lg boxed--border">
+                                <div class="text-block text-center">
+                                    <img alt="avatar" src="{{ user|gravatar }}" class="image--sm" />
+                                    <span class="h5">{{ newsletter.name }}</span>
+                                    <span>Pro Account</span>
+                                    <span class="label">MEMBER</span>
+                                </div>
+                                <hr>
+                                <div class="text-block">
+                                    <ul class="menu-vertical">
+                                        <li>
+                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-profile;hidden">Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-notifications;hidden">Email Notifications</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-billing;hidden">Billing Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-password;hidden">Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-delete;hidden">Delete Account</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <div class="boxed boxed--lg boxed--border">
+
+                                  <div id="account-profile" class="account-tab">
+                                    <h4>Write A Newsletter!</h4>
+                                     <form method="post" class="mx-0">
+
+  {% csrf_token %}<div class="form-line">
+{{ form.title|as_crispy_field }}</div><div class="form-line">
+{{ form.content|as_crispy_field }}
+</div></form>
+</div>
+                                    
+                                </div>
+
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+
+                  {% if messages %}
+      {% for message in messages %}
+
+
+ <div class="notification pos-right pos-top" data-animation="from-top" data-autoshow="200">
+                <div class="boxed boxed--border border--round box-shadow">
+                    <div class="text-block">
+                        <h5>Autoshow Notification</h5>
+                        <p>
+                            Here's a handy little notification that'll pop up and tell the user something important about your page.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        
+     
+        {% endfor %}
+   
+      {% endif %}
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}

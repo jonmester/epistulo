@@ -1,0 +1,52 @@
+
+{% extends 'newsletter/base.html' %}
+{% load static %}
+{% block content %}{% load crispy_forms_tags %}
+
+            <section class="imagebg text-center height-30" data-overlay="4" data-gradient-bg="#4876BD,#5448BD,#8F48BD,#BD48B1">
+       
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-7">
+                            <h1>Write a new post</h1>
+                            <a class="btn btn--primary btn--icon" href="{% url 'newsletter_admin' %}">
+  <span class="btn__text"><i class="stack-left-open"></i> Back to dashboard</span>
+</a>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+</div>
+<section>
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
+ <form method="post" class=" mx-0>
+                        <input type="hidden" name="user" value="{{ user }}" />
+
+  {% csrf_token %}
+{{ form.title|as_crispy_field }}
+{{ form.content|as_crispy_field }}
+
+  {{ form.is_public|as_crispy_field }}
+
+
+  <button class="btn btn--sm btn--primary type--uppercase" type="submit">Save draft</button>
+</form>
+<hr>
+<a class="btn" href="/newsletter/admin/delete-{{ post_id }}" onclick="if (!confirm('Are you sure? This action can\'t be undone')) { return false }">
+  <span class="btn__text">Delete post (Not reversible) »</span>
+</a>
+</div>
+<div class="col-md-3">
+</div></div></section>
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+    {% endblock %}
+
+

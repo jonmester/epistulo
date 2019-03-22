@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-container">
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h1>Edit existing post<br></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container">
+                    <form method="post" class=" mx-0>
+                        <input type="hidden" name="user" value="{{ user }}" />
+
+  {% csrf_token %}
+  {{ form.title|as_crispy_field }}
+
+  {{ form.content|as_crispy_field }}
+
+  <button class="btn btn--sm btn--primary type--uppercase" type="submit">Save draft</button>
+</form><hr>
+                  <a href="/newsletter/admin/delete-{{ post_id }}" onclick="if (!confirm('Are you sure? This action can\'t be undone')) { return false }">Delete post (Not reversible) »</a>
+                </div>
+
+            </section>
+
+
+
+        </div>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/parallax.js"></script>
+        <script src="js/granim.min.js"></script>
+        <script src="js/smooth-scroll.min.js"></script>
+        <script src="js/scripts.js"></script>
+
+
+
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script src="js/granim.min.js"></script>
+
+
+    {% endblock %}

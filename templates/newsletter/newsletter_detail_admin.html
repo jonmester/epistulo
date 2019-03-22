@@ -1,0 +1,234 @@
+
+
+{% extends 'newsletter/base-stripped.html' %} 
+{% load static %}
+{% block head_title %}{{ newsletter.name }}{% endblock %}
+{% block content %}
+
+<section class="space--sm switchable switchable--switch  ">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+{% if newsletter.cover_pic %}
+                                            <div class="height-50 imagebg border--round" data-overlay="5">
+                                              
+                                                
+                                                 <div class="background-image-holder" style="background: url({{ newsletter.cover_pic.url }}); opacity: 1;">
+                                                    <img alt="background" src="{{ newsletter.cover_pic.url }}">
+                                                </div>{% else %}
+
+                                                <div class="height-50 bg--dark border--round" data-overlay="5">
+                                                <span style="z-index: 99;" class="label">{{ subscribers.count }} Insider members</span>
+                                                 
+                                                {% endif %}
+                                                
+                                                <div class="pos-vertical-center col-md-10 boxed boxed--lg bg--none">
+                                                   <span><h1> {{ newsletter.name }}</h1></span>
+                                                    <p class="lead">
+                                                      {{ newsletter.description }} 
+                                                    </p>
+                                                    {% if newsletter.is_active %}
+
+                                 <span class="label">Verified</span>
+                                    {% else %}
+                                    <a href="{% url 'connect-stripe' %}"><div class="alert">
+                                <div class="alert__body ">
+                                    <span class="color--error">You need to connect with Stripe to get subscribers. Click here.</span>
+                                </div>
+                           
+                            </div></a><br>{% endif %}{% if user.is_authenticated %}<div class="modal-instance" >
+                                <a class="btn type--uppercase modal-trigger" href="#" style="z-index: 99;" data-modal-index="2">
+                                    <span class="btn__text">
+                                      View Insider members
+                                    </span>
+                                </a>
+                                <div class="modal-container">
+                                   <div class="modal-content section-modal">
+                                        <section class="cover bg--white border--round" style="padding-top: 25%; padding-bottom: 25%;">
+                                            <div class="modal-close modal-close-cross"></div>
+                                            
+                                            <div class="container pos-vertical-center">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-lg-5">
+                                                        <div class="pl-5">
+                                                            <h2>
+                                                                Your Insider Members
+                                                            </h2>
+                                                            <p class="lead">
+                                                                Keep tabs on who is paying for a subscription and get access to your content.
+                                                            </p>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-lg-7">
+
+                                                        <table class="border--round">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Email</th>
+            <th>Started Membership</th>
+            
+        </tr>
+        
+    </thead>
+
+                                                        <tbody>
+                                                            <tr>
+            <td>John Doe</td>
+            <td>johndoe@gmail.com</td>
+            <td>1st January</td>
+            
+        </tr>
+        {% for subscriber in subscribers %}
+
+        <tr>
+
+            <td>{{ subscriber.user.username }}</td>
+            <td>{{ subscriber.user.email }}</td>
+            <td>{{ subscriber.timestamp }}</td>
+            <
+        </tr>
+          {% endfor %}
+                      
+                      </tbody>
+                    </table>
+                                                    </div>
+                                                </div>
+                                                <!--end of row-->
+                                            </div>
+                                            <!--end of container-->
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                                    
+
+
+ <a class="btn type--uppercase" href="{% url 'edit-profile' %}"> <span class="btn__text">
+         Edit Profile
+          </span> </a>
+                                                   
+
+       
+          {% endif %}
+         
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end of row--> 
+                          
+                                <!--end of container-->
+                            </section>
+
+
+            
+
+
+<section class="space--sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="masonry masonry-blog-magazine">
+                                
+                                <div class="masonry__container row masonry--active">
+                                    
+
+
+                                        {% for post in posts %}
+                                    <div class="masonry__item col-md-6 col-12 filter-marketing" data-masonry-filter="Marketing">
+                                        <a class="block" href="@{{ newsletter.url_slug }}/{{ post.url_slug }}">
+                                            {% if post.featured_image %} <article class="imagebg border--round" data-scrim-bottom="8">
+
+                                              
+                                              <div class="background-image-holder" style="background: url({{ post.featured_image.url }}); opacity: 1;">
+                                                    <img alt="background" src="{{ post.featured_image.url }}">
+                                                </div>
+                                              {% elif post.video|length > 1 %}
+                                              <article class="imagebg border--round" data-scrim-bottom="8">
+                                                <div class="background-image-holder" style="background: url(http://img.youtube.com/vi/{{ post.video }}/0.jpg); opacity: 1;">
+                                                    <img alt="background" src="http://img.youtube.com/vi/{{ post.video }}/0.jpg">
+                                                </div>
+                                                  {% else %}
+                                                  <article class="imagebg bg--dark border--round" data-scrim-bottom="8">
+                                                <div class="background-image-holder" style="background: url({% static 'img/back.jpg' %}); opacity: 1;">
+                                                    <img alt="background" src="{% static 'img/back.jpg' %}">
+                                                </div>
+                                                    
+                                                {% endif %}
+                                               
+                                                <div class="article__title">
+                                                    <span>{{ post.timestamp|date:"M d Y" }}</span>
+                                                    <h4>{{ post.title }}</h4>
+                                                    <div class="bar_module"><ul class="menu-horizontal">
+                                                    <li><a href="{% url 'edit-post' post_id=post.id %}">
+                                             Edit
+                                            </a> 
+            </li>
+            <li>
+              <a href="{% url 'delete-post' post_id=post.id %}">
+                                              Delete
+                                            </a>
+            </li></ul></div>
+                                                </div>
+                                            </article>
+                                        </a>
+                                    </div>
+                                    <!--end item-->
+
+                                    {% endfor %}
+                                    
+                                    
+                                </div>
+
+
+                                <!--end masonry container-->
+                               {% if posts.has_other_pages %}
+                               <div class="pagination">
+  <ol>
+    {% if posts.has_previous %}
+      <li><a class="pagination__prev" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if posts.number == i %}
+        <li class="pagination__current"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+      <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ol></div>
+{% endif %}
+                            </div>
+                            <!--end masonry-->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+{% endblock %}

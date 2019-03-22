@@ -1,0 +1,231 @@
+{% load gravatar %}{% load static %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Site Description Here">
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/stack-interface.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/socicon.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/flickity.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/iconsmind.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/jquery.steps.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/theme-cedar.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700" rel="stylesheet"> 
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+.StripeElement {
+  background-color: white;
+  height: 40px;
+  padding: 10px 12px;
+  
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}</style>
+    </head><body>
+        <nav id="menu-bar" class="bar bar--sm bar-1 hidden-xs " data-scroll-class="100px:pos-fixed">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-5 hidden-xs">
+                            <div class="bar__module">
+                                <a href="{% url 'home' %}">
+                                    <img class="logo logo-dark" alt="logo" src="{% static 'img/ah.png' %}">
+                                    <img class="logo logo-light" alt="logo" src="{% static 'img/ah.png' %}">
+                                </a> <br><span class="lead">{{ newsletter.name }}</span>
+                            </div>
+                            <!--end module-->
+                        </div>
+                        <div class="col-lg-9 col-md-7 text-right text-left-xs text-left-sm">
+                            <div class="bar__module">
+                                <ul class="menu-horizontal text-left">
+<li>
+    <a href="{% url 'discover' %}">DISCOVER</a></li>
+    {% if not user.is_authenticated %} <li><a href="{% url 'login' %}">Login</a></li>{% endif %}
+                                   {% if user.is_authenticated %}
+                                   {% if not user.is_creator %}
+                                                                <li> <a href="{% url 'create' %}">Become A Creator</a> </li>
+                                                                {% endif %}
+               
+
+
+           <li class="dropdown">
+                                        <span class="dropdown__trigger"> <img alt="avatar" class="avatar image--xxs" src="{{ user|gravatar }}"></span>
+                                        <div class="dropdown__container" style="left: -82.1333px;">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="dropdown__content col-lg-2 col-md-4" style="left: 82.1333px;">
+                                                        <ul class="menu-vertical">
+                                                                {% if user.is_creator %}<li> <a href="{% url 'newsletter_admin' %}">Creator Dashboard</a> </li>{% endif %}
+                                                                <li> <a href="{% url 'subscriptions' %}">Your subscriptions</a> </li>
+                                                                <li> <a href="{% url 'change_password' %}">Change password</a></li>
+                                                                <li> <a href="{% url 'logout' %}">Log out</a> </li>
+                                                    </div>
+                                                    <!--end dropdown content-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+                                        </div>
+                                        <!--end dropdown container-->
+                                    </li>
+                                    {% if user.is_creator %}
+
+    
+                                   
+                                    <a class="btn btn--sm type--uppercase" href="{% url 'go-to-profile' %}">
+                                    <span class="btn__text">
+                                        View Profile
+                                    </span>
+                                </a>
+                          
+<a class="btn btn--sm type--uppercase btn--primary" href="{% url 'write-post' %}">
+                                    <span class="btn__text">
+                                        New Post
+                                    </span>
+                                </a>
+
+{% endif %}
+           
+{% endif %}
+    
+
+
+                                </ul>
+                            </div>
+                            <!--end module-->
+                        
+                            <!--end module-->
+                        </div>
+                    </div>
+
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </nav>
+<div class="main-container">
+
+
+    {% block content %}
+    {% endblock content %}
+</div>
+
+            <footer class="space--sm footer-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 col-xs-6">
+                            <h6 class="type--uppercase">Company</h6>
+                            <ul class="list--hover">
+                                <li><a href="#">About Company</a></li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">Locations</a></li>
+                                <li><a href="#">History</a></li>
+                                <li><a href="#">Work With Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-xs-6">
+                            <h6 class="type--uppercase">Developers</h6>
+                            <ul class="list--hover">
+                                <li><a href="#">Developer Center</a></li>
+                                <li><a href="#">API Reference</a></li>
+                                <li><a href="#">Downloads</a></li>
+                                <li><a href="#">Tools</a></li>
+                                <li><a href="#">Developer Blog</a></li>
+                                <li><a href="#">Developer Forums</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-xs-6">
+                            <h6 class="type--uppercase">Support</h6>
+                            <ul class="list--hover">
+                                <li><a href="#">Help Center</a></li>
+                                <li><a href="#">Live Chat</a></li>
+                                <li><a href="#">Downloads</a></li>
+                                <li><a href="#">Press Kit</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 col-xs-6">
+                            <h6 class="type--uppercase">Locations</h6>
+                            <ul class="list--hover">
+                                <li><a href="#">Melbourne</a></li>
+                                <li><a href="#">London</a></li>
+                                <li><a href="#">New York</a></li>
+                                <li><a href="#">San Francisco</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"> <span class="type--fine-print">© <span class="update-year"></span> Stack Inc.</span> <a class="type--fine-print" href="#">Privacy Policy</a> <a class="type--fine-print" href="#">Legal</a> </div>
+                        <div class="col-sm-6 text-right text-left-xs">
+                            <ul class="social-list list-inline list--hover">
+                                <li><a href="#"><i class="socicon socicon-google icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-twitter icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-facebook icon icon--xs"></i></a></li>
+                                <li><a href="#"><i class="socicon socicon-instagram icon icon--xs"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>{% for message in messages %}
+  <div class="notification pos-left pos-top col-md-4 col-lg-3" data-animation="from-top" data-autoshow="500">
+<div class="boxed boxed--border border--round box-shadow">
+                                    
+                                    <div class="text-block">
+                                        
+                                        <p>
+                                            {{ message|safe }}
+                                        </p>
+                                    </div>
+                                </div>
+
+      
+</div>
+     
+        {% endfor %}
+
+       <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/parallax.js' %}"></script>
+        <script src="{% static 'js/twitterfetcher.min.js' %}"></script>
+        <script src="{% static 'js/smooth-scroll.min.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/jquery.steps.min.js' %}"></script>
+        <script src="{% static 'js/ytplayer.min.js' %}"></script>
+        <script src="{% static 'js/lightbox.min.js' %}"></script>
+        <script src="{% static 'assets/js/youtube.js' %}"></script><script src="{% static 'assets/js/stripe.js' %}" type="text/javascript"></script>
+    </body>
+
+</html>

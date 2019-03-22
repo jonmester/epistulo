@@ -1,0 +1,74 @@
+.stripe-button-el button { 
+background-color:#c75146 !important;}
+
+
+
+
+.post-h {
+	font-size: 35px;
+	line-height: 1.5;
+}
+
+.post-lead {
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.article__body p {
+	font-weight: 400 !important;
+}
+
+.badge {
+	background: #c75146 !important;
+	color: white;
+	padding: 5px 15px;
+	border-radius: 100px;
+	z-index: 0;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.avatar {
+	border-radius: 50%;
+}
+
+.shadow {
+	box-shadow: 10px 10px 10px #ececec
+}
+
+.discover {
+
+	transition: 0.3s;
+}
+
+.discover:hover {
+	transform: scale(1.01);
+	transition: 0.3s;
+}
+
+ .short {
+	text-align: center;
+	margin: 40px auto;
+}
+
+.crop {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 100%;
+    
+}
+
+.crop {
+    width: 100%;
+    
+    overflow: hidden;
+}
+
+.crop img {
+    height: 100%;
+    overflow: hidden;
+}

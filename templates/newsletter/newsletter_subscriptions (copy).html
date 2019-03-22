@@ -1,0 +1,50 @@
+{% extends 'newsletter/base.html' %}
+
+
+
+
+
+
+{% load static %}
+{% block content %}<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="{% static 'js/twitterfetcher.min.js' %}"></script>
+
+            <section class="imagebg text-center height-30" data-overlay="4" data-gradient-bg="#4876BD,#5448BD,#8F48BD,#BD48B1">
+       
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-7">
+                            <h1>Subscriptions</h1>
+                              <p class="lead"> You have {{ subscriptions.count }} active subscriptions</p>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">      {% for subscription in subscriptions %}
+                        <div class="col-md-4">
+                            <div class="feature"> <img alt="Image" src="{% static 'img/cowork-6.jpg' %}" class="border--round">
+                                <span><h4>{{ subscription.newsletter.name }} </h4>{% if subscription.newsletter.price > 0 %} ${{ subscription.newsletter.price }} / month  {% else %} FREE {% endif %}</span>
+                                <p> {{ subscription.newsletter.description|truncatechars:100 }}</p>
+    <a class="btn btn--primary btn--sm type--uppercase" href="/@{{ subscription.newsletter.url_slug }}"> <span class="btn__text">
+        Read newsletter
+          </span> </a>
+   <a class="btn btn--sm" href="/@{{ subscription.newsletter.url_slug }}/unsubscribe/">
+    <span class="btn__text">Cancel</span>
+</a>
+
+
+                            </div>
+                        </div>{% endfor %}
+                        
+                    </div>
+                </div>
+            </section>
+
+
+
+{% endblock %}
