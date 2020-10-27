@@ -17,7 +17,7 @@ Click==7.0
 cloudpickle==0.5.2
 configobj==5.0.6
 configparser==3.5.0
-cryptography==2.4.1
+cryptography==3.2
 cycler==0.10.0
 dash==0.28.5
 dash-core-components==0.35.0
