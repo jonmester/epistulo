@@ -25,7 +25,7 @@ dash-html-components==0.13.2
 dash-renderer==0.14.3
 decorator==4.3.0
 defusedxml==0.5.0
-Django==1.11.16
+Django==2.2.24
 django-crispy-forms==1.7.2
 dlib==19.16.0
 docutils==0.14
